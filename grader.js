@@ -32,9 +32,8 @@ var URL_DEFAULT = "";
 var CHECKSFILE_DEFAULT = "checks.json";
 
 var sampleurl = function(url) {
-    console.log("fetching url format");
+    //console.log("fetching url format");
     return util.format(
-	//'http://evening-dawn-5945.herokuapp.com/'
 	url
         );
 };
@@ -50,7 +49,10 @@ var assertFileExists = function(infile) {
 
 var assertUrlExists = function(inurl) {
     var instr = inurl.toString();
-    console.log("%s is the url given.", instr);
+    if (!instr) {
+	console.log("Error in url string");
+	process.exit(1);
+    }
     return instr;
 };
 
@@ -67,56 +69,33 @@ var loadChecks = function(checksfile) {
 };
 
 var checkHtmlFile = function(htmlfile, checksfile) {
-    console.log("checkHtmlFile function being executed");
     $ = cheerioHtmlFile(htmlfile);
-    //console.log($);
     var checks = loadChecks(checksfile).sort();
     var out = {};
     for(var ii in checks) {
-	//console.log('checki balaji:' + $(checks[ii]));
         var present = $(checks[ii]).length > 0;
         out[checks[ii]] = present;
     }
     return out;
 };
 
-var response2console = function(result) {
-    console.log("eureka...");
-
-};
-
 var checkUrl = function(url, checksfile) {
-    console.log("checkUrl function being executed");
     var apiurl = sampleurl(url);
-    //var urlRet = rest.get(apiurl).on('complete', response2console);
     rest.get(apiurl).on('complete', function(result) {
 	if (result instanceof Error) {
 	    util.puts('Error: ' + result.message);
-	    //this.retry(5000); // try again after 5 sec
-	} else {
-	    console.log("getting url result...");
-	    //util.puts(result);
+	    this.retry(5000); // try again after 5 sec
 	}
-	//console.log(checksfile);
 	$ = cheerioUrl(result);
-	//console.log($);
 	var checks = loadChecks(checksfile).sort();
-	//console.log(checks);
 	var out = {};
 	for(var ii in checks) {
-	    //console.log('check:' + $(checks[ii]));
-            var present = $(checks[ii]).length > 0;
+	    var present = $(checks[ii]).length > 0;
             out[checks[ii]] = present;
 	}
-	console.log("out mine:");
-	console.log(out);
-	console.log("out mine END:");
 	var outJson = JSON.stringify(out, null, 4);
-	console.log('outJson:' + outJson);
-	//return out;
+	console.log(outJson);
     });
-    //console.log('urlRet:' + urlRet);
-    //return urlRet;
 };
 
 var clone = function(fn) {
@@ -134,16 +113,14 @@ if(require.main == module) {
     
     var checkJson = "";
     if (program.file) {
+	//console.log("Executing program.file based stuff...");
 	checkJson = checkHtmlFile(program.file, program.checks);
 	var outJson = JSON.stringify(checkJson, null, 4);
-	console.log('outJson:' + outJson);
+	console.log(outJson);
     } else if (program.url) {
-	console.log("program.url...");
+	//console.log("Executing program.url based stuff...");
 	checkJson = checkUrl(program.url, program.checks);
-	console.log('checkJson:' + checkJson);
     }
-    //var outJson = JSON.stringify(checkJson, null, 4);
-    //console.log('outJson:' + outJson);
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
