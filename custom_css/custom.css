@@ -1,13 +1,25 @@
-.carouseldiv {
+/*.carouseldiv {
   margin: 0 auto;
   width: 480px;
   height: 300px;
 }
-
+*/
+/*
 .inner-item {
   text-align: center;
   img {
     margin: 0 auto;
   }
 }
+*/
+/* Marketing section of Overview
+-------------------------------------------------- */
 
+.marketing {
+  text-align: center;
+  color: #5a5a5a;
+}
+
+#myCarouselRowid {
+  background-color: #000000;
+}

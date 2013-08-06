@@ -4,29 +4,20 @@
     <meta charset="utf-8">
     <title>My First Bitstarter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+	 ===============================================================================
+         NOTE: Using the bootstrap.min.css spoils the responsive design. Don't know why?? 
+	 ===============================================================================
     <link rel="stylesheet" href="bootstrap.min.css">
+    -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="custom.css">
     <!-- link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css" -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">    
 
     <!-- script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <!-- can use bootstrap.min.js - the complete compiled and minified version. it includes carousel and transitions -->
-    <script src="bootstrap.min.js"></script>
-    <script>window.jQuery || document.write('<script src="jquery-1.10.2.min.js"></script>')</script>
-    <!--
-    <script src="bootstrap-transition.js"></script>
-    <script src="bootstrap-carousel.js"></script>
-    -->
-    <script>
-      $(document).ready(function() {
-        $("#myCarousel").carousel({
-          interval: 3000
-        });
-      });
-    </script>  
-
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
     <style type="text/css">
@@ -136,6 +127,10 @@
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
+            <ul class="nav pull-right">
+	      <li><a href="#login">Login &nbsp; |</a></li>
+	      <li><a href="#login">SignUp</a></li>
+            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -147,7 +142,7 @@
       <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
       <div class="row-fluid heading">
         <div class="span12">
-          <h1>ProblemSolved<h1>
+          <h1>ProblemSolved: Development version<h1>
           <!-- h1>Pen-&-Paper<h1 -->
         </div>
       </div>
@@ -161,76 +156,127 @@
 
 
      <!-- provides a container to carousel. defined in custom.css --> 
-     
-     <div class="carouseldiv">
-      <div id="myCarousel" class="carousel slide">
-        <div class="carousel-inner">
-	  <div class="item active">
-	    <img src="trig_prob1.png" width="480" height="300">
-	    <div class="carousel-caption">
-	      <p> Caption text...</p>
-	    </div>  
-          </div>
-	  <div class="item">
-	    <img src="quad_eqn.png" width="480" height="300">
-	    <div class="carousel-caption">
-	      <p> Caption text...</p>
-	    </div>  
-	  </div>
-	  <div class="item">
-	    <img src="simple_test.png" width="480" height="300">
-	    <div class="carousel-caption">
-	      <p> Caption text...</p>
-	    </div>  
-	  </div>
-        </div>
-	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-      </div>
-    </div>
+     <!-- AMIT: This extra container is not needed anymore. We use row-fluid as an outer container, which uses 100% width
+	  and then use three span4's. We put the image in the middle span. That's the trick I played -->
+     <!-- div class="carouseldiv" -->
+     <div class="row-fluid" id="myCarouselRowid">
+       <div class="span4"></div> <!-- FAKE DIV -->
+       <div class="span4">
+	 <div id="myCarousel" class="carousel slide">
+           <div class="carousel-inner">
+	     <div class="item active">
+	       <img src="trig_prob1.png" alt="trig_prob1" width="480" height="300">
+	       <div class="carousel-caption">
+		 <p> Caption text...</p>
+	       </div>  
+             </div>
+	     <div class="item">
+	       <img src="quad_eqn.png" alt="quad_eqn" width="480" height="300">
+	       <div class="carousel-caption">
+		 <p> Caption text...</p>
+	       </div>  
+	     </div>
+	     <div class="item">
+	       <img src="simple_test.png" alt="simple_test" width="480" height="300">
+	       <div class="carousel-caption">
+		 <p> Caption text...</p>
+	       </div>  
+	     </div>
+           </div>
+	   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	 </div>
+       </div>
+       <div class="span4"></div> <!-- FAKE DIV -->
+     </div> 
      
     <!-- end of custom carouseldiv --> 
 
+     <hr class="soften"> <!-- this creates a grey demarcating horizontal line -->
+     
+     <div class="row-fluid" id="connectid">
+       <div class="span12 text-center">
+	 <!-- div class="span9 offset3 text-center" -->
+	   <button class="btn btn-xlarge btn-facebook"><i class="icon-facebook"></i> | Connect with Facebook</button>
+	   <button class="btn btn-xlarge btn-twitter"><i class="icon-twitter"></i> | Connect with Twitter</button>
+	   <button class="btn btn-xlarge btn-success">SignUp with Email</button>
+	 <!- /div -->
+       </div>
+     </div>
+
+	
      <hr class="soften"> <!-- this creates a grey demarcating horizontal line -->
 
      <!-- C. beginning of one image + statistics box -->
      <div class="row-fluid pitch">
         <div class="span5 offset1 video">
-          <img class="img-polaroid" src="http://placehold.it/480x370">
+          <img class="img-polaroid" alt="placeholder" src="http://placehold.it/480x290">
           <!-- img class="img-polaroid" src="trig_prob1.png" -->
         </div>
 
-	<!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->                                                                                    
+	<!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
+                                                                                    
         <div class="span5 actions">
-	  <div class="span8 offset2">                                                                                                                                                          <div class="statistics">                                                                                                                                                            <div class="span4">                                                                                                                                                                 <!-- linediv-l and linediv-r give dividing lines that look                                                                                                                        different in horizontal and vertical layouts, illustrating                                                                                                                        media queries. -->                                                                                                                                                                <div class="linediv-l">                                                                                                                                                           <h3>1000</h3> <p>backers</p>                                                                                                                                                      </div>                                                                                                                                                                          </div>                                                                                                                                                                            <div class="span4">                                                                                                                                                                 <div class="linediv-c">                                                                                                                                                             <h3>$6000</h3> <p>of $10,000</p>                                                                                                                                                </div>                                                                                                                                                                          </div>                                                                                                                                                                            <div class="span4">                                                                                                                                                                 <div class="linediv-r">                                                                                                                                                           <h3>10</h3> <p>days left</p>                                                                                                                                                      </div>
+	  <div class="row-fluid">
+	  <div class="span8 offset2">
+            <div class="row-fluid statistics">
+              <div class="span4">
+              <!-- linediv-l and linediv-r give dividing lines that look
+              different in horizontal and vertical layouts, illustrating 
+              media queries. -->
+                <div class="linediv-l">
+                  <h3>1000</h3> <p>backers</p>
+                </div>
+              </div>
+              <div class="span4">
+                <div class="linediv-c">
+                  <h3>$6000</h3> <p>of $10,000</p>
+                </div>
+              </div>
+              <div class="span4">
+                <div class="linediv-r">
+                  <h3>10</h3> <p>days left</p>
+                </div>
               </div>
             </div>
           </div>
-	  <div class="span10 offset1">                                                                                                                                                         <!-- Bootstrap progress bar -->                                                                                                                                                   <!-- http://twitter.github.io/bootstrap/components.html#progress -->                                                                                                              <div class="thermometer progress active">                                                                                                                                           <div class="bar bar-success" style="width: 60%;"></div>                                                                                                                           <div class="bar bar-warning" style="width: 40%;"></div>                                                                                                                         </div>                                                                                                                                                                          </div>                                                                                                                                                                            <div class="span6 offset3 order">                                                                                                                                                   <!-- Standard Bootstrap button. -->                                                                                                                                               <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->                                                                                                                 <button class="btn btn-success btn-large">Preorder</button>                                                                                                                     </div>                                                                                                                                                                            <div class="span8 offset2 social">                                                                                                                                                  <!-- Social buttons are not included in default Bootstrap. -->                                                                                                                    <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->                                                                                                                 <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+	  <div class="row-fluid">
+	  <div class="span10 offset1">                                                                                                                                                         <!-- Bootstrap progress bar -->                                                                                                                                                   <!-- http://twitter.github.io/bootstrap/components.html#progress -->                                                                                                              <div class="thermometer progress active">                                                                                                                                           <div class="bar bar-success" style="width: 60%;"></div>                                                                                                                           <div class="bar bar-warning" style="width: 40%;"></div>                                                                                                                         </div>                                                                                                                                                               
+           </div>                                                                                                                                                                 
+           </div>                                                                                                                                                                 
+           <div class="row-fluid">
+           <div class="span6 offset3 order">                                                                                                                                                   <!-- Standard Bootstrap button. -->                                                                                                                                               <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->                                                                                                                 <button class="btn btn-success btn-large">Preorder</button>                                                                                                                     </div>                                                                                                                                                                 
+           </div>                                                                                                                                                                 
+           <div class="row-fluid"> 
+	   <div class="span8 offset2 social">                                                                                                                                                  <!-- Social buttons are not included in default Bootstrap. -->                                                                                                                    <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->                                                                                                                 <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
             <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
           </div>
+          </div>
+        </div>
         </div>
      </div> <!-- C. end of row-fluid pitch --> 
 
      <hr class="soften"> <!-- this creates a grey demarcating horizontal line -->
      
-     <!-- Amit's marketing portion -->
+     <!-- Amit's marketing portion 
+	  .markerting css is given in custom.css
+       -->
      <div class="marketing">
        <h1>Importance of Math and Science</h1>
        <p class="marketing-byline">Need reasons to know the importance of Maths and Science? Read on.</p>
        <div class="row-fluid section1">
 	 <div class="span4">
-	   <img class="marketing-img" src="1374227838_Tutorial.png">
+	   <img class="marketing-img" alt="marketing-img" src="1374227838_Tutorial.png">
 	   <h2>Article 1</h2>
 	   <p><i>"Fourth- and eighth-grade students in the United States continue to lag behind students in several East Asian countries and some European nations in math and science" - <a href="http://www.nytimes.com/2012/12/11/education/us-students-still-lag-globally-in-math-and-science-tests-show.html?_r=0">NYTimes</a></i></p>
 	 </div>
 	 <div class="span4">
-           <img class="marketing-img" src="1374227997_Teacher.png">
+           <img class="marketing-img" alt="marketing-img" src="1374227997_Teacher.png">
 	    <h2>Article 2</h2>
            <p><i>"Two indicators are particularly worrisome, especially as this country experiences greater global competition and high unemployment. American students score 23rd in math and 31st in science when compared with 65 other top industrial countries" - <a href="http://www.cnn.com/2012/02/09/opinion/bennett-stem-education">CNN</a></i></p>
          </div>
 	 <div class="span4">
-           <img class="marketing-img" src="1374228312_edu_science.png">
+           <img class="marketing-img" alt="marketing-img" src="1374228312_edu_science.png">
 	    <h2>Article 3</h2>
            <p><i>"The Obama Administration stands committed to providing students at every level with the skills they need to excel in the high-paid, highly-rewarding fields of science, technology, engineering, and math (STEM)" - <a href="http://www.whitehouse.gov/issues/education/k-12/educate-innovate">WhiteHouse</a></i></p>
          </div>
@@ -242,19 +288,19 @@
        <p class="marketing-byline">Practice to perfection...</p>
        <div class="row-fluid section1">
 	 <div class="span4">
-	   <img class="marketing-img" src="1374228029_elementary_school.png">
+	   <img class="marketing-img" alt="marketing-img" src="1374228029_elementary_school.png">
 	   <h2>Practice</h2>
 	   <p><i>"Sharpen your skills by solving maths and science problems. Refer to condensed study material and videos to assist you in the process"</i></p>
 	 </div>
 	 <div class="span4">
-           <img class="marketing-img" src="1374575576_climbing.png">
+           <img class="marketing-img" alt="marketing-img" src="1374575576_climbing.png">
 	    <h2>Climb</h2>
 	   <p><i>"Earn points by submitting your solutions. You will be graded based on the correctness of your solutions and also the time taken to solve the problems. Review your approach against the golden solution set"</i></p>
          </div>
 	 <div class="span4">
-           <img class="marketing-img" src="1374575598_Natsu-Default_Setting.png">
+           <img class="marketing-img" alt="marketing-img" src="1374575598_Natsu-Default_Setting.png">
 	    <h2>Compete</h2>
-	   <p><i>"Rating bands will be created based on certain min-max scores. Based on your earned points you will be assigned a band. A one-off competion will be held in each band. You can earn bonus points and climb to the next band and also have the opportnity to test your skills across the globe"</i></p>
+	   <p><i>"Rating bands will be created based on certain min-max scores. Based on your earned points you will be assigned a band. A one-off competion will be held in each band. You can earn bonus points and climb to the next band and also have the opportnity to test your skills across the globe. You can also earn study scholarship."</i></p>
          </div>
        </div> <!-- end of row-fluid -->
 
@@ -314,10 +360,34 @@
 
 
     </div>    <!-- end of container -->
-<!--  
+
+    <!========================================================= -->
+    <! Login SignUp container -->
+    <!========================================================= -->
+    <div class="container" id="#login">
+      <div class="row">
+	<div class="span4 offset4">
+	  <div class="well">
+            <legend>Please sign in...</legend>
+            <form method="POST" action="" accept-charset="UTF-8">
+              <div class="alert alert-error">
+                <a class="close" data-dismiss="alert" href="#">x</a>Incorrect Username or Password!
+              </div>      
+              <input class="span3" placeholder="Username" type="text" name="username">
+              <input class="span3" placeholder="Password" type="password" name="password"> 
+              <label class="checkbox">
+                <input type="checkbox" name="remember" value="1"> Remember Me
+              </label>
+              <button class="btn-info btn" type="submit">Login</button>      
+            </form>    
+	  </div>
+	</div>
+      </div>
+    </div>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>
     <script>window.jQuery || document.write('<script src="jquery-1.10.2.min.js"></script>')</script>
+    <script src="bootstrap.min.js"></script>
     <script>
       $(document).ready(function() {
         $("#myCarousel").carousel({
@@ -325,6 +395,7 @@
         });
       });
     </script>  
-  -->
+    <script src="login.js"></script>
+
   </body>
 </html>
